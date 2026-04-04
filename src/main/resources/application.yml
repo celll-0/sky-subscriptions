@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: sky-subscription-api
+  
+  # Multiple datasources for GDPR compliance and role-based access control
+  datasource:
+    # Reader datasource - app_reader user (readonly + readonly_history roles)
+    reader:
+      url: jdbc:postgresql://localhost:5432/sky_subscription
+      username: ${DB_READER_USERNAME:app_reader}
+      password: ${DB_READER_PASSWORD:changeme_reader}
+      driver-class-name: org.postgresql.Driver
+      hikari:
+        pool-name: ReaderPool
+        maximum-pool-size: 5
+        connection-test-query: SELECT 1
+    
+    # Writer datasource - app user (main + history_manager roles)
+    writer:
+      url: jdbc:postgresql://localhost:5432/sky_subscription
+      username: ${DB_WRITER_USERNAME:app}
+      password: ${DB_WRITER_PASSWORD:changeme_writer}
+      driver-class-name: org.postgresql.Driver
+      hikari:
+        pool-name: WriterPool
+        maximum-pool-size: 10
+        connection-test-query: SELECT 1
+    
+    # Deleter datasource - app_cleaner user (deleteonly_admin role)
+    deleter:
+      url: jdbc:postgresql://localhost:5432/sky_subscription
+      username: ${DB_DELETER_USERNAME:app_cleaner}
+      password: ${DB_DELETER_PASSWORD:changeme_deleter}
+      driver-class-name: org.postgresql.Driver
+      hikari:
+        pool-name: DeleterPool
+        maximum-pool-size: 3
+        connection-test-query: SELECT 1
+  
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        # Show which datasource is being used
+        connection.provider_disables_autocommit: false
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.sky.subscription: DEBUG
+    com.sky.subscription.datasource: DEBUG
+    com.sky.subscription.service: INFO
+    com.sky.subscription.controller: INFO
+    com.sky.subscription.aspect: DEBUG
+    com.sky.subscription.filter: INFO
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] [%X{correlationId}] %-5level %logger{36} - %msg%n"

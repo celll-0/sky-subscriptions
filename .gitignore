@@ -1,0 +1,18 @@
+# Gradle
+build/
+.gradle/
+
+# Eclipse IDE
+bin/
+.classpath
+.factorypath
+.project
+.settings/
+
+# Compiled Java
+*.class
+
+# OS files
+Thumbs.db
+desktop.ini
+.DS_Store
