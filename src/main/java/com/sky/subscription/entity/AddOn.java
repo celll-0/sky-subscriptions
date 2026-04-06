@@ -21,7 +21,7 @@ public class AddOn {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "addon_id")
-    private Integer addonId;
+    private Integer id;
 
     @Column(name = "addon_name", nullable = false, length = 100)
     private String addonName;

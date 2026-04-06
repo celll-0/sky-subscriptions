@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface PackageTierRepository extends JpaRepository<PackageTier, Integer> {
     
-    List<PackageTier> findByPkgPackageId(Integer packageId);
+    List<PackageTier> findByPkgId(Integer packageId);
     
     List<PackageTier> findByPaymentCycle(PaymentCycle paymentCycle);
 }

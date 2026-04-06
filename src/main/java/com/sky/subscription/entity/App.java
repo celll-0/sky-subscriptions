@@ -20,7 +20,7 @@ public class App {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "app_id")
-    private Integer appId;
+    private Integer id;
 
     @Column(name = "app_name", nullable = false, length = 100)
     private String appName;

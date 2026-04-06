@@ -36,7 +36,7 @@ public class PaymentService {
     }
 
     public List<PaymentDto> getPaymentsBySubscriptionId(Integer subscriptionId) {
-        return paymentRepository.findBySubscriptionSubscriptionId(subscriptionId).stream()
+        return paymentRepository.findBySubscriptionId(subscriptionId).stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
     }
@@ -114,8 +114,8 @@ public class PaymentService {
 
     private PaymentDto toDto(Payment entity) {
         return PaymentDto.builder()
-                .paymentId(entity.getPaymentId())
-                .subscriptionId(entity.getSubscription().getSubscriptionId())
+                .id(entity.getId())
+                .subscriptionId(entity.getSubscription().getId())
                 .amount(entity.getAmount())
                 .dueDate(entity.getDueDate())
                 .paidDate(entity.getPaidDate())

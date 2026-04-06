@@ -17,7 +17,7 @@ public class SubscriptionApp {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "sub_app_id")
-    private Integer subAppId;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subscription_id", nullable = false)

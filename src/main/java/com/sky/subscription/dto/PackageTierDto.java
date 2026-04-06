@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @Builder
 public class PackageTierDto {
     
-    private Integer packageTierId;
+    private Integer id;
     
     @NotNull(message = "Package ID is required")
     private Integer packageId;

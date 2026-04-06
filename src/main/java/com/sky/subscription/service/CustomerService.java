@@ -86,7 +86,7 @@ public class CustomerService {
 
     private CustomerDto toDto(Customer entity) {
         return CustomerDto.builder()
-                .customerId(entity.getCustomerId())
+                .id(entity.getId())
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
                 .emailAddress(entity.getEmailAddress())
@@ -101,7 +101,7 @@ public class CustomerService {
 
     private Customer toEntity(CustomerDto dto) {
         return Customer.builder()
-                .customerId(dto.getCustomerId())
+                .id(dto.getId())
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())
                 .emailAddress(dto.getEmailAddress())

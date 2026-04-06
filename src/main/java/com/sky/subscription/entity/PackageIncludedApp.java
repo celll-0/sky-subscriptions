@@ -17,7 +17,7 @@ public class PackageIncludedApp {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "included_app_id")
-    private Integer includedAppId;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "package_id", nullable = false)

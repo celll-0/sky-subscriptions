@@ -17,7 +17,7 @@ import java.math.BigDecimal;
 @Builder
 public class AddOnDto {
     
-    private Integer addonId;
+    private Integer id;
     
     @NotBlank(message = "Add-on name is required")
     @Size(max = 100, message = "Add-on name must be at most 100 characters")

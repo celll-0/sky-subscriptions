@@ -10,11 +10,11 @@ import java.util.List;
 @Repository
 public interface SubscriptionRepository extends JpaRepository<Subscription, Integer> {
     
-    List<Subscription> findByCustomerCustomerId(Integer customerId);
+    List<Subscription> findByCustomerId(Integer customerId);
     
     List<Subscription> findByStatus(SubscriptionStatus status);
     
-    List<Subscription> findByCustomerCustomerIdAndStatus(Integer customerId, SubscriptionStatus status);
+    List<Subscription> findByCustomerIdAndStatus(Integer customerId, SubscriptionStatus status);
     
-    List<Subscription> findByPackageTierPackageTierId(Integer packageTierId);
+    List<Subscription> findByPackageTierId(Integer packageTierId);
 }

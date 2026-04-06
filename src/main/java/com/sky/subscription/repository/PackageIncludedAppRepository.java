@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface PackageIncludedAppRepository extends JpaRepository<PackageIncludedApp, Integer> {
     
-    List<PackageIncludedApp> findByPkgPackageId(Integer packageId);
+    List<PackageIncludedApp> findByPkgId(Integer packageId);
     
-    List<PackageIncludedApp> findByAppTierAppTierId(Integer appTierId);
+    List<PackageIncludedApp> findByAppTierId(Integer appTierId);
 }

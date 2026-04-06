@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 public class AppDto {
     
-    private Integer appId;
+    private Integer id;
     
     @NotBlank(message = "App name is required")
     @Size(max = 100, message = "App name must be at most 100 characters")

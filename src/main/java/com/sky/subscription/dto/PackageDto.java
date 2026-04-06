@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 public class PackageDto {
     
-    private Integer packageId;
+    private Integer id;
     
     @NotBlank(message = "Package name is required")
     @Size(max = 100, message = "Package name must be at most 100 characters")

@@ -38,7 +38,7 @@ public class SubscriptionService {
     }
 
     public List<SubscriptionDto> getSubscriptionsByCustomerId(Integer customerId) {
-        return subscriptionRepository.findByCustomerCustomerId(customerId).stream()
+        return subscriptionRepository.findByCustomerId(customerId).stream()
                 .map(this::toDto)
                 .collect(Collectors.toList());
     }
@@ -93,14 +93,14 @@ public class SubscriptionService {
             }
         }
         
-        return toDto(subscriptionRepository.findById(saved.getSubscriptionId()).orElse(saved));
+        return toDto(subscriptionRepository.findById(saved.getId()).orElse(saved));
     }
 
     public SubscriptionDto updateSubscription(Integer id, SubscriptionDto dto) {
         Subscription existing = subscriptionRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Subscription", "id", id));
         
-        if (dto.getPackageTierId() != null && !dto.getPackageTierId().equals(existing.getPackageTier().getPackageTierId())) {
+        if (dto.getPackageTierId() != null && !dto.getPackageTierId().equals(existing.getPackageTier().getId())) {
             PackageTier packageTier = packageTierRepository.findById(dto.getPackageTierId())
                     .orElseThrow(() -> new ResourceNotFoundException("PackageTier", "id", dto.getPackageTierId()));
             existing.setPackageTier(packageTier);
@@ -143,7 +143,7 @@ public class SubscriptionService {
     }
 
     public void removeAddOnFromSubscription(Integer subscriptionId, Integer addonId) {
-        subscriptionAddOnRepository.deleteBySubscriptionSubscriptionIdAndAddOnAddonId(subscriptionId, addonId);
+        subscriptionAddOnRepository.deleteBySubscriptionIdAndAddOnId(subscriptionId, addonId);
     }
 
     // App tier management for subscriptions
@@ -163,23 +163,23 @@ public class SubscriptionService {
     }
 
     public void removeAppTierFromSubscription(Integer subscriptionId, Integer appTierId) {
-        subscriptionAppRepository.deleteBySubscriptionSubscriptionIdAndAppTierAppTierId(subscriptionId, appTierId);
+        subscriptionAppRepository.deleteBySubscriptionIdAndAppTierId(subscriptionId, appTierId);
     }
 
     private SubscriptionDto toDto(Subscription entity) {
         List<Integer> addOnIds = entity.getAddOns() != null
-                ? entity.getAddOns().stream().map(sa -> sa.getAddOn().getAddonId()).collect(Collectors.toList())
+                ? entity.getAddOns().stream().map(sa -> sa.getAddOn().getId()).collect(Collectors.toList())
                 : null;
         
         List<Integer> appTierIds = entity.getApps() != null
-                ? entity.getApps().stream().map(sa -> sa.getAppTier().getAppTierId()).collect(Collectors.toList())
+                ? entity.getApps().stream().map(sa -> sa.getAppTier().getId()).collect(Collectors.toList())
                 : null;
         
         return SubscriptionDto.builder()
-                .subscriptionId(entity.getSubscriptionId())
-                .customerId(entity.getCustomer().getCustomerId())
+                .id(entity.getId())
+                .customerId(entity.getCustomer().getId())
                 .customerName(entity.getCustomer().getFirstName() + " " + entity.getCustomer().getLastName())
-                .packageTierId(entity.getPackageTier().getPackageTierId())
+                .packageTierId(entity.getPackageTier().getId())
                 .packageTierName(entity.getPackageTier().getTierName())
                 .startDate(entity.getStartDate())
                 .endDate(entity.getEndDate())

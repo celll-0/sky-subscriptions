@@ -21,7 +21,7 @@ public class AppTier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "app_tier_id")
-    private Integer appTierId;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "app_id", nullable = false)

@@ -81,7 +81,7 @@ public class AddOnService {
 
     private AddOnDto toDto(AddOn entity) {
         return AddOnDto.builder()
-                .addonId(entity.getAddonId())
+                .id(entity.getId())
                 .addonName(entity.getAddonName())
                 .costMonthly(entity.getCostMonthly())
                 .included(entity.getIncluded())
@@ -90,7 +90,7 @@ public class AddOnService {
 
     private AddOn toEntity(AddOnDto dto) {
         return AddOn.builder()
-                .addonId(dto.getAddonId())
+                .id(dto.getId())
                 .addonName(dto.getAddonName())
                 .costMonthly(dto.getCostMonthly())
                 .included(dto.getIncluded() != null ? dto.getIncluded() : false)

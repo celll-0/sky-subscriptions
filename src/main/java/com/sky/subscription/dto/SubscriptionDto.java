@@ -17,7 +17,7 @@ import java.util.List;
 @Builder
 public class SubscriptionDto {
     
-    private Integer subscriptionId;
+    private Integer id;
     
     @NotNull(message = "Customer ID is required")
     private Integer customerId;

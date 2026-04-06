@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 @Builder
 public class AppTierDto {
     
-    private Integer appTierId;
+    private Integer id;
     
     @NotNull(message = "App ID is required")
     private Integer appId;

@@ -20,7 +20,7 @@ public class Package {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "package_id")
-    private Integer packageId;
+    private Integer id;
 
     @Column(name = "package_name", nullable = false, length = 100)
     private String packageName;

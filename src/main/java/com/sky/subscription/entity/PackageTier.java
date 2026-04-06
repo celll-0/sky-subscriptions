@@ -21,7 +21,7 @@ public class PackageTier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "package_tier_id")
-    private Integer packageTierId;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "package_id", nullable = false)

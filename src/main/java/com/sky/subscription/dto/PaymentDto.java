@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Builder
 public class PaymentDto {
     
-    private Integer paymentId;
+    private Integer id;
     
     @NotNull(message = "Subscription ID is required")
     private Integer subscriptionId;

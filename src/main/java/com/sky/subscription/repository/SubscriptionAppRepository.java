@@ -9,9 +9,9 @@ import java.util.List;
 @Repository
 public interface SubscriptionAppRepository extends JpaRepository<SubscriptionApp, Integer> {
     
-    List<SubscriptionApp> findBySubscriptionSubscriptionId(Integer subscriptionId);
+    List<SubscriptionApp> findBySubscriptionId(Integer subscriptionId);
     
-    List<SubscriptionApp> findByAppTierAppTierId(Integer appTierId);
+    List<SubscriptionApp> findByAppTierId(Integer appTierId);
     
-    void deleteBySubscriptionSubscriptionIdAndAppTierAppTierId(Integer subscriptionId, Integer appTierId);
+    void deleteBySubscriptionIdAndAppTierId(Integer subscriptionId, Integer appTierId);
 }

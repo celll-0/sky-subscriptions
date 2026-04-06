@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface AppTierRepository extends JpaRepository<AppTier, Integer> {
     
-    List<AppTier> findByAppAppId(Integer appId);
+    List<AppTier> findByAppId(Integer appId);
     
     List<AppTier> findByPaymentCycle(PaymentCycle paymentCycle);
 }

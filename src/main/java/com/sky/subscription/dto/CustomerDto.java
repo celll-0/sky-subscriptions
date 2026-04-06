@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @Builder
 public class CustomerDto {
     
-    private Integer customerId;
+    private Integer id;
     
     @NotBlank(message = "First name is required")
     @Size(max = 50, message = "First name must be at most 50 characters")

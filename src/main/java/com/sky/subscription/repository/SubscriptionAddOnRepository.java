@@ -9,9 +9,9 @@ import java.util.List;
 @Repository
 public interface SubscriptionAddOnRepository extends JpaRepository<SubscriptionAddOn, Integer> {
     
-    List<SubscriptionAddOn> findBySubscriptionSubscriptionId(Integer subscriptionId);
+    List<SubscriptionAddOn> findBySubscriptionId(Integer subscriptionId);
     
-    List<SubscriptionAddOn> findByAddOnAddonId(Integer addonId);
+    List<SubscriptionAddOn> findByAddOnId(Integer addonId);
     
-    void deleteBySubscriptionSubscriptionIdAndAddOnAddonId(Integer subscriptionId, Integer addonId);
+    void deleteBySubscriptionIdAndAddOnId(Integer subscriptionId, Integer addonId);
 }

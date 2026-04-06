@@ -74,7 +74,7 @@ public class PackageService {
 
     // Package Tier operations
     public List<PackageTierDto> getTiersByPackageId(Integer packageId) {
-        return packageTierRepository.findByPkgPackageId(packageId).stream()
+        return packageTierRepository.findByPkgId(packageId).stream()
                 .map(this::toTierDto)
                 .collect(Collectors.toList());
     }
@@ -104,7 +104,7 @@ public class PackageService {
         PackageTier existing = packageTierRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("PackageTier", "id", id));
         
-        if (dto.getPackageId() != null && !dto.getPackageId().equals(existing.getPkg().getPackageId())) {
+        if (dto.getPackageId() != null && !dto.getPackageId().equals(existing.getPkg().getId())) {
             Package pkg = packageRepository.findById(dto.getPackageId())
                     .orElseThrow(() -> new ResourceNotFoundException("Package", "id", dto.getPackageId()));
             existing.setPkg(pkg);
@@ -131,7 +131,7 @@ public class PackageService {
                 : null;
         
         return PackageDto.builder()
-                .packageId(entity.getPackageId())
+                .id(entity.getId())
                 .packageName(entity.getPackageName())
                 .tiers(tiers)
                 .build();
@@ -139,8 +139,8 @@ public class PackageService {
 
     private PackageTierDto toTierDto(PackageTier entity) {
         return PackageTierDto.builder()
-                .packageTierId(entity.getPackageTierId())
-                .packageId(entity.getPkg().getPackageId())
+                .id(entity.getId())
+                .packageId(entity.getPkg().getId())
                 .packageName(entity.getPkg().getPackageName())
                 .tierName(entity.getTierName())
                 .price(entity.getPrice())

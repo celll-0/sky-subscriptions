@@ -77,7 +77,7 @@ public class AppService {
 
     // App Tier operations
     public List<AppTierDto> getTiersByAppId(Integer appId) {
-        return appTierRepository.findByAppAppId(appId).stream()
+        return appTierRepository.findByAppId(appId).stream()
                 .map(this::toTierDto)
                 .collect(Collectors.toList());
     }
@@ -107,7 +107,7 @@ public class AppService {
         AppTier existing = appTierRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("AppTier", "id", id));
         
-        if (dto.getAppId() != null && !dto.getAppId().equals(existing.getApp().getAppId())) {
+        if (dto.getAppId() != null && !dto.getAppId().equals(existing.getApp().getId())) {
             App app = appRepository.findById(dto.getAppId())
                     .orElseThrow(() -> new ResourceNotFoundException("App", "id", dto.getAppId()));
             existing.setApp(app);
@@ -134,7 +134,7 @@ public class AppService {
                 : null;
         
         return AppDto.builder()
-                .appId(entity.getAppId())
+                .id(entity.getId())
                 .appName(entity.getAppName())
                 .included(entity.getIncluded())
                 .tiers(tiers)
@@ -143,8 +143,8 @@ public class AppService {
 
     private AppTierDto toTierDto(AppTier entity) {
         return AppTierDto.builder()
-                .appTierId(entity.getAppTierId())
-                .appId(entity.getApp().getAppId())
+                .id(entity.getId())
+                .appId(entity.getApp().getId())
                 .appName(entity.getApp().getAppName())
                 .tierName(entity.getTierName())
                 .price(entity.getPrice())
