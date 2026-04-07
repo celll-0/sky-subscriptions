@@ -26,4 +26,8 @@ public class SubscriptionAddOn {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "addon_id", nullable = false)
     private AddOn addOn;
+
+    @Column(name = "included", nullable = false)
+    @Builder.Default
+    private Boolean included = false;
 }

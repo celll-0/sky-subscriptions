@@ -62,7 +62,7 @@ public class SubscriptionService {
                 .startDate(dto.getStartDate())
                 .endDate(dto.getEndDate())
                 .status(dto.getStatus())
-                .updatedAt(LocalDateTime.now())
+                .lastUpdated(LocalDateTime.now())
                 .build();
         
         Subscription saved = subscriptionRepository.save(subscription);
@@ -113,7 +113,7 @@ public class SubscriptionService {
         if (dto.getStatus() != null) {
             existing.setStatus(dto.getStatus());
         }
-        existing.setUpdatedAt(LocalDateTime.now());
+        existing.setLastUpdated(LocalDateTime.now());
         
         Subscription saved = subscriptionRepository.save(existing);
         return toDto(saved);
@@ -184,7 +184,7 @@ public class SubscriptionService {
                 .startDate(entity.getStartDate())
                 .endDate(entity.getEndDate())
                 .status(entity.getStatus())
-                .updatedAt(entity.getUpdatedAt())
+                .lastUpdated(entity.getLastUpdated())
                 .addOnIds(addOnIds)
                 .appTierIds(appTierIds)
                 .build();

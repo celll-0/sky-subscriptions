@@ -40,12 +40,14 @@ public class DataSourceConfig {
         HikariDataSource dataSource = properties.initializeDataSourceBuilder()
                 .type(HikariDataSource.class)
                 .build();
-        
-        log.info("[DATASOURCE-CONFIG] READER datasource configured | " +
-                "User: {} | URL: {} | Pool: ReaderPool | " +
-                "Permissions: SELECT on all tables including payment history",
+
+        log.info("[DATASOURCE-CONFIG] READER datasource configured | User: {} | URL: {}",
                 properties.getUsername(), properties.getUrl());
-        
+        if ("changeme_reader".equals(properties.getPassword())) {
+            log.warn("[DATASOURCE-CONFIG] READER datasource is using the default password. " +
+                    "DB_READER_PASSWORD env var is not set — did you run: source ./set-env.sh ?");
+        }
+
         return dataSource;
     }
     
@@ -64,12 +66,14 @@ public class DataSourceConfig {
         HikariDataSource dataSource = properties.initializeDataSourceBuilder()
                 .type(HikariDataSource.class)
                 .build();
-        
-        log.info("[DATASOURCE-CONFIG] WRITER datasource configured | " +
-                "User: {} | URL: {} | Pool: WriterPool | " +
-                "Permissions: SELECT, INSERT, UPDATE on all tables",
+
+        log.info("[DATASOURCE-CONFIG] WRITER datasource configured | User: {} | URL: {}",
                 properties.getUsername(), properties.getUrl());
-        
+        if ("changeme_writer".equals(properties.getPassword())) {
+            log.warn("[DATASOURCE-CONFIG] WRITER datasource is using the default password. " +
+                    "DB_WRITER_PASSWORD env var is not set — did you run: source ./set-env.sh ?");
+        }
+
         return dataSource;
     }
     
@@ -88,13 +92,14 @@ public class DataSourceConfig {
         HikariDataSource dataSource = properties.initializeDataSourceBuilder()
                 .type(HikariDataSource.class)
                 .build();
-        
-        log.info("[DATASOURCE-CONFIG] DELETER datasource configured | " +
-                "User: {} | URL: {} | Pool: DeleterPool | " +
-                "Permissions: DELETE only on all tables | " +
-                "GDPR: Used for data erasure and retention enforcement",
+
+        log.info("[DATASOURCE-CONFIG] DELETER datasource configured | User: {} | URL: {}",
                 properties.getUsername(), properties.getUrl());
-        
+        if ("changeme_deleter".equals(properties.getPassword())) {
+            log.warn("[DATASOURCE-CONFIG] DELETER datasource is using the default password. " +
+                    "DB_DELETER_PASSWORD env var is not set — did you run: source ./set-env.sh ?");
+        }
+
         return dataSource;
     }
     

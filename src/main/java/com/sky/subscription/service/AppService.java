@@ -43,7 +43,6 @@ public class AppService {
         
         App app = App.builder()
                 .appName(dto.getAppName())
-                .included(dto.getIncluded() != null ? dto.getIncluded() : false)
                 .build();
         
         App saved = appRepository.save(app);
@@ -62,7 +61,6 @@ public class AppService {
         }
         
         existing.setAppName(dto.getAppName());
-        existing.setIncluded(dto.getIncluded() != null ? dto.getIncluded() : false);
         
         App saved = appRepository.save(existing);
         return toDto(saved);
@@ -136,7 +134,6 @@ public class AppService {
         return AppDto.builder()
                 .id(entity.getId())
                 .appName(entity.getAppName())
-                .included(entity.getIncluded())
                 .tiers(tiers)
                 .build();
     }

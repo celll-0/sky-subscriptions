@@ -25,18 +25,6 @@ public class AddOnService {
                 .collect(Collectors.toList());
     }
 
-    public List<AddOnDto> getIncludedAddOns() {
-        return addOnRepository.findByIncludedTrue().stream()
-                .map(this::toDto)
-                .collect(Collectors.toList());
-    }
-
-    public List<AddOnDto> getPurchasableAddOns() {
-        return addOnRepository.findByIncludedFalse().stream()
-                .map(this::toDto)
-                .collect(Collectors.toList());
-    }
-
     public AddOnDto getAddOnById(Integer id) {
         AddOn addOn = addOnRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("AddOn", "id", id));
@@ -66,7 +54,6 @@ public class AddOnService {
         
         existing.setAddonName(dto.getAddonName());
         existing.setCostMonthly(dto.getCostMonthly());
-        existing.setIncluded(dto.getIncluded() != null ? dto.getIncluded() : false);
         
         AddOn saved = addOnRepository.save(existing);
         return toDto(saved);
@@ -84,7 +71,6 @@ public class AddOnService {
                 .id(entity.getId())
                 .addonName(entity.getAddonName())
                 .costMonthly(entity.getCostMonthly())
-                .included(entity.getIncluded())
                 .build();
     }
 
@@ -93,7 +79,6 @@ public class AddOnService {
                 .id(dto.getId())
                 .addonName(dto.getAddonName())
                 .costMonthly(dto.getCostMonthly())
-                .included(dto.getIncluded() != null ? dto.getIncluded() : false)
                 .build();
     }
 }

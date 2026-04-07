@@ -22,16 +22,6 @@ public class AddOnController {
         return ResponseEntity.ok(addOnService.getAllAddOns());
     }
 
-    @GetMapping("/included")
-    public ResponseEntity<List<AddOnDto>> getIncludedAddOns() {
-        return ResponseEntity.ok(addOnService.getIncludedAddOns());
-    }
-
-    @GetMapping("/purchasable")
-    public ResponseEntity<List<AddOnDto>> getPurchasableAddOns() {
-        return ResponseEntity.ok(addOnService.getPurchasableAddOns());
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<AddOnDto> getAddOnById(@PathVariable Integer id) {
         return ResponseEntity.ok(addOnService.getAddOnById(id));

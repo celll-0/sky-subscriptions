@@ -26,4 +26,8 @@ public class SubscriptionApp {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "app_tier_id", nullable = false)
     private AppTier appTier;
+
+    @Column(name = "included", nullable = false)
+    @Builder.Default
+    private Boolean included = false;
 }

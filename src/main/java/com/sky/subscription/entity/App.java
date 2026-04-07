@@ -25,10 +25,6 @@ public class App {
     @Column(name = "app_name", nullable = false, length = 100)
     private String appName;
 
-    @Column(name = "included", nullable = false)
-    @Builder.Default
-    private Boolean included = false;
-
     @OneToMany(mappedBy = "app", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Builder.Default
     private List<AppTier> tiers = new ArrayList<>();

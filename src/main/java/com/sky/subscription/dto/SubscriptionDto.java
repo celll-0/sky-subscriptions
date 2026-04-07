@@ -37,7 +37,7 @@ public class SubscriptionDto {
     @NotNull(message = "Status is required")
     private SubscriptionStatus status;
     
-    private LocalDateTime updatedAt;
+    private LocalDateTime lastUpdated;
     
     private List<Integer> addOnIds;
     

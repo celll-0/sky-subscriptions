@@ -21,7 +21,5 @@ public class AppDto {
     @Size(max = 100, message = "App name must be at most 100 characters")
     private String appName;
     
-    private Boolean included;
-    
     private List<AppTierDto> tiers;
 }

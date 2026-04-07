@@ -42,9 +42,9 @@ public class Subscription {
     @Column(name = "status", nullable = false)
     private SubscriptionStatus status;
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "last_updated", nullable = false)
     @Builder.Default
-    private LocalDateTime updatedAt = LocalDateTime.now();
+    private LocalDateTime lastUpdated = LocalDateTime.now();
 
     @OneToMany(mappedBy = "subscription", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Builder.Default
@@ -60,6 +60,6 @@ public class Subscription {
 
     @PreUpdate
     protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
+        lastUpdated = LocalDateTime.now();
     }
 }

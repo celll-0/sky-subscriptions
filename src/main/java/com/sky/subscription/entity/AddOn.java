@@ -29,10 +29,6 @@ public class AddOn {
     @Column(name = "cost_monthly", nullable = false, precision = 6, scale = 2)
     private BigDecimal costMonthly;
 
-    @Column(name = "included", nullable = false)
-    @Builder.Default
-    private Boolean included = false;
-
     @OneToMany(mappedBy = "addOn", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Builder.Default
     private List<SubscriptionAddOn> subscriptionAddOns = new ArrayList<>();
