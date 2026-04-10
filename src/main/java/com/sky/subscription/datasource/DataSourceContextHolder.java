@@ -27,7 +27,7 @@ public class DataSourceContextHolder {
         }
         
         String correlationId = MDC.get("correlationId");
-        String previousType = contextHolder.get() != null ? contextHolder.get().toString() : "NONE";
+        String previousType = contextHolder.get() != null ? contextHolder.get().toString() : "NONE"; // TODO: eliminate duplication contextHolder.get() call
         
         contextHolder.set(operationType);
         

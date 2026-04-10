@@ -37,6 +37,11 @@ public class DataSourceConfig {
     @ConfigurationProperties("spring.datasource.reader.hikari")
     public DataSource readerDataSource() {
         DataSourceProperties properties = readerDataSourceProperties();
+        log.info("[DATASOURCE-CONFIG] adding password to db user config | User: {} | Password: {}",
+                "app_reader",
+                System.getenv("DB_READER_PASSWORD"));
+        properties.setPassword(System.getenv("DB_READER_PASSWORD"));
+
         HikariDataSource dataSource = properties.initializeDataSourceBuilder()
                 .type(HikariDataSource.class)
                 .build();
@@ -63,6 +68,11 @@ public class DataSourceConfig {
     @ConfigurationProperties("spring.datasource.writer.hikari")
     public DataSource writerDataSource() {
         DataSourceProperties properties = writerDataSourceProperties();
+        log.info("[DATASOURCE-CONFIG] adding password to db user config | User: {} | Password: {}",
+                "app",
+                System.getenv("DB_WRITER_PASSWORD"));
+        properties.setPassword(System.getenv("DB_WRITER_PASSWORD"));
+
         HikariDataSource dataSource = properties.initializeDataSourceBuilder()
                 .type(HikariDataSource.class)
                 .build();
@@ -89,6 +99,8 @@ public class DataSourceConfig {
     @ConfigurationProperties("spring.datasource.deleter.hikari")
     public DataSource deleterDataSource() {
         DataSourceProperties properties = deleterDataSourceProperties();
+        properties.setPassword(System.getenv("DB_DELETER_PASSWORD"));
+
         HikariDataSource dataSource = properties.initializeDataSourceBuilder()
                 .type(HikariDataSource.class)
                 .build();
