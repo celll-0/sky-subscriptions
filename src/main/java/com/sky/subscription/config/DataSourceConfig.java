@@ -38,12 +38,12 @@ public class DataSourceConfig {
     public DataSource readerDataSource() {
         DataSourceProperties properties = readerDataSourceProperties();
         log.info("[DATASOURCE-CONFIG] adding password to db user config | User: {} | Password: {}",
-                "app_reader",
-                System.getenv("DB_READER_PASSWORD"));
-        properties.setPassword(System.getenv("DB_READER_PASSWORD"));
+                "app_reader"
+                );
 
         HikariDataSource dataSource = properties.initializeDataSourceBuilder()
                 .type(HikariDataSource.class)
+                .password(System.getenv("DB_READER_PASSWORD"))
                 .build();
 
         log.info("[DATASOURCE-CONFIG] READER datasource configured | User: {} | URL: {}",
@@ -69,12 +69,12 @@ public class DataSourceConfig {
     public DataSource writerDataSource() {
         DataSourceProperties properties = writerDataSourceProperties();
         log.info("[DATASOURCE-CONFIG] adding password to db user config | User: {} | Password: {}",
-                "app",
-                System.getenv("DB_WRITER_PASSWORD"));
-        properties.setPassword(System.getenv("DB_WRITER_PASSWORD"));
+                "app"
+                );
 
         HikariDataSource dataSource = properties.initializeDataSourceBuilder()
                 .type(HikariDataSource.class)
+                .password(System.getenv("DB_WRITER_PASSWORD"))
                 .build();
 
         log.info("[DATASOURCE-CONFIG] WRITER datasource configured | User: {} | URL: {}",
@@ -99,10 +99,10 @@ public class DataSourceConfig {
     @ConfigurationProperties("spring.datasource.deleter.hikari")
     public DataSource deleterDataSource() {
         DataSourceProperties properties = deleterDataSourceProperties();
-        properties.setPassword(System.getenv("DB_DELETER_PASSWORD"));
 
         HikariDataSource dataSource = properties.initializeDataSourceBuilder()
                 .type(HikariDataSource.class)
+                .password(System.getenv("DB_DELETER_PASSWORD"))
                 .build();
 
         log.info("[DATASOURCE-CONFIG] DELETER datasource configured | User: {} | URL: {}",
