@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.OffsetDateTime;
 
 @Entity
 @Table(name = "payment")
@@ -32,8 +33,8 @@ public class Payment {
     @Column(name = "due_date", nullable = false)
     private LocalDate dueDate;
 
-    @Column(name = "paid_date")
-    private LocalDate paidDate;
+    @Column(name = "paid_at")
+    private OffsetDateTime paidAt;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)

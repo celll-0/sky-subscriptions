@@ -7,16 +7,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "package_included_app")
+@Table(name = "package_included_add_on")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class PackageIncludedApp {
+public class PackageIncludedAddOn {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "included_app_id")
+    @Column(name = "included_add_on")
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -24,6 +24,6 @@ public class PackageIncludedApp {
     private PackageTier packageTier;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "app_tier_id", nullable = false)
-    private AppTier appTier;
+    @JoinColumn(name = "addon_id", nullable = false)
+    private AddOn addOn;
 }

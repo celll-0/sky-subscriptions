@@ -53,7 +53,7 @@ public class AddOnService {
         }
         
         existing.setAddonName(dto.getAddonName());
-        existing.setCostMonthly(dto.getCostMonthly());
+        existing.setPrice(dto.getPrice());
         
         AddOn saved = addOnRepository.save(existing);
         return toDto(saved);
@@ -70,7 +70,7 @@ public class AddOnService {
         return AddOnDto.builder()
                 .id(entity.getId())
                 .addonName(entity.getAddonName())
-                .costMonthly(entity.getCostMonthly())
+                .price(entity.getPrice())
                 .build();
     }
 
@@ -78,7 +78,7 @@ public class AddOnService {
         return AddOn.builder()
                 .id(dto.getId())
                 .addonName(dto.getAddonName())
-                .costMonthly(dto.getCostMonthly())
+                .price(dto.getPrice())
                 .build();
     }
 }

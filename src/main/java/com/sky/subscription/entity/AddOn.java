@@ -26,10 +26,14 @@ public class AddOn {
     @Column(name = "addon_name", nullable = false, length = 100)
     private String addonName;
 
-    @Column(name = "cost_monthly", nullable = false, precision = 6, scale = 2)
-    private BigDecimal costMonthly;
+    @Column(name = "price", nullable = false, precision = 6, scale = 2)
+    private BigDecimal price;
 
     @OneToMany(mappedBy = "addOn", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Builder.Default
     private List<SubscriptionAddOn> subscriptionAddOns = new ArrayList<>();
+
+    @OneToMany(mappedBy = "addOn", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<PackageIncludedAddOn> packageIncludedAddOns = new ArrayList<>();
 }

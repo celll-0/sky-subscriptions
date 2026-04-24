@@ -67,7 +67,7 @@ public class CustomerService {
         existing.setLastName(dto.getLastName());
         existing.setEmailAddress(dto.getEmailAddress());
         existing.setCity(dto.getCity());
-        existing.setExternalAuthId(dto.getExternalAuthId());
+        existing.setExtAuthId(dto.getExtAuthId());
         existing.setMarketingConsent(dto.getMarketingConsent() != null ? dto.getMarketingConsent() : false);
         
         Customer saved = customerRepository.save(existing);
@@ -91,7 +91,7 @@ public class CustomerService {
                 .lastName(entity.getLastName())
                 .emailAddress(entity.getEmailAddress())
                 .city(entity.getCity())
-                .externalAuthId(entity.getExternalAuthId())
+                .extAuthId(entity.getExtAuthId())
                 .marketingConsent(entity.getMarketingConsent())
                 .isDeleted(entity.getIsDeleted())
                 .deletedAt(entity.getDeletedAt())
@@ -106,7 +106,7 @@ public class CustomerService {
                 .lastName(dto.getLastName())
                 .emailAddress(dto.getEmailAddress())
                 .city(dto.getCity())
-                .externalAuthId(dto.getExternalAuthId())
+                .extAuthId(dto.getExtAuthId())
                 .marketingConsent(dto.getMarketingConsent() != null ? dto.getMarketingConsent() : false)
                 .build();
     }

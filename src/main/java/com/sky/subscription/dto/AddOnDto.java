@@ -23,7 +23,7 @@ public class AddOnDto {
     @Size(max = 100, message = "Add-on name must be at most 100 characters")
     private String addonName;
 
-    @NotNull(message = "Monthly cost is required")
-    @Positive(message = "Monthly cost must be positive")
-    private BigDecimal costMonthly;
+    @NotNull(message = "Price is required")
+    @Positive(message = "Price must be positive")
+    private BigDecimal price;
 }

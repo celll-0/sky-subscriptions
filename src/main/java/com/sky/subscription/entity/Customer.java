@@ -35,8 +35,8 @@ public class Customer {
     @Column(name = "city", length = 100)
     private String city;
 
-    @Column(name = "external_auth_id", unique = true, length = 255)
-    private String externalAuthId;
+    @Column(name = "ext_auth_id", unique = true, length = 255)
+    private String extAuthId;
 
     @Column(name = "marketing_consent", nullable = false)
     @Builder.Default

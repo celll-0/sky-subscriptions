@@ -29,7 +29,5 @@ public class Package {
     @Builder.Default
     private List<PackageTier> tiers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "pkg", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Builder.Default
-    private List<PackageIncludedApp> includedApps = new ArrayList<>();
+
 }

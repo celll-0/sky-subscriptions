@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,7 +69,7 @@ public class PaymentService {
                 .subscription(subscription)
                 .amount(dto.getAmount())
                 .dueDate(dto.getDueDate())
-                .paidDate(dto.getPaidDate())
+                .paidAt(dto.getPaidAt())
                 .status(dto.getStatus())
                 .build();
         
@@ -85,7 +87,7 @@ public class PaymentService {
         if (dto.getDueDate() != null) {
             existing.setDueDate(dto.getDueDate());
         }
-        existing.setPaidDate(dto.getPaidDate());
+        existing.setPaidAt(dto.getPaidAt());
         if (dto.getStatus() != null) {
             existing.setStatus(dto.getStatus());
         }
@@ -99,7 +101,7 @@ public class PaymentService {
                 .orElseThrow(() -> new ResourceNotFoundException("Payment", "id", id));
         
         payment.setStatus(PaymentStatus.paid);
-        payment.setPaidDate(LocalDate.now());
+        payment.setPaidAt(OffsetDateTime.now(ZoneOffset.UTC));
         
         Payment saved = paymentRepository.save(payment);
         return toDto(saved);
@@ -118,7 +120,7 @@ public class PaymentService {
                 .subscriptionId(entity.getSubscription().getId())
                 .amount(entity.getAmount())
                 .dueDate(entity.getDueDate())
-                .paidDate(entity.getPaidDate())
+                .paidAt(entity.getPaidAt())
                 .status(entity.getStatus())
                 .build();
     }

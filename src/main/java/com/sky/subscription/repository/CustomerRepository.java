@@ -12,7 +12,7 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
     
     Optional<Customer> findByEmailAddress(String emailAddress);
     
-    Optional<Customer> findByExternalAuthId(String externalAuthId);
+    Optional<Customer> findByExtAuthId(String extAuthId);
     
     List<Customer> findByIsDeletedFalse();
     

@@ -40,4 +40,12 @@ public class PackageTier {
     @OneToMany(mappedBy = "packageTier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Builder.Default
     private List<Subscription> subscriptions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "packageTier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<PackageIncludedApp> includedApps = new ArrayList<>();
+
+    @OneToMany(mappedBy = "packageTier", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @Builder.Default
+    private List<PackageIncludedAddOn> includedAddOns = new ArrayList<>();
 }

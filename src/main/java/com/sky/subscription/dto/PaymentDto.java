@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.OffsetDateTime;
 
 @Data
 @NoArgsConstructor
@@ -29,7 +30,7 @@ public class PaymentDto {
     @NotNull(message = "Due date is required")
     private LocalDate dueDate;
     
-    private LocalDate paidDate;
+    private OffsetDateTime paidAt;
     
     @NotNull(message = "Status is required")
     private PaymentStatus status;

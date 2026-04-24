@@ -35,7 +35,7 @@ public class CustomerDto {
     private String city;
     
     @Size(max = 255, message = "External auth ID must be at most 255 characters")
-    private String externalAuthId;
+    private String extAuthId;
     
     private Boolean marketingConsent;
     
