@@ -37,23 +37,13 @@ public class DataSourceConfig {
     @ConfigurationProperties("spring.datasource.reader.hikari")
     public DataSource readerDataSource() {
         DataSourceProperties properties = readerDataSourceProperties();
-        log.info("[DATASOURCE-CONFIG] adding password to db user config | User: {} | Password: {}",
-                "app_reader"
-                );
-
-        HikariDataSource dataSource = properties.initializeDataSourceBuilder()
-                .type(HikariDataSource.class)
-                .password(System.getenv("DB_READER_PASSWORD"))
-                .build();
 
         log.info("[DATASOURCE-CONFIG] READER datasource configured | User: {} | URL: {}",
                 properties.getUsername(), properties.getUrl());
-        if ("changeme_reader".equals(properties.getPassword())) {
-            log.warn("[DATASOURCE-CONFIG] READER datasource is using the default password. " +
-                    "DB_READER_PASSWORD env var is not set — did you run: source ./set-env.sh ?");
-        }
 
-        return dataSource;
+        return properties.initializeDataSourceBuilder()
+                .type(HikariDataSource.class)
+                .build();
     }
     
     // Writer DataSource Configuration (app user)
@@ -68,23 +58,13 @@ public class DataSourceConfig {
     @ConfigurationProperties("spring.datasource.writer.hikari")
     public DataSource writerDataSource() {
         DataSourceProperties properties = writerDataSourceProperties();
-        log.info("[DATASOURCE-CONFIG] adding password to db user config | User: {} | Password: {}",
-                "app"
-                );
-
-        HikariDataSource dataSource = properties.initializeDataSourceBuilder()
-                .type(HikariDataSource.class)
-                .password(System.getenv("DB_WRITER_PASSWORD"))
-                .build();
 
         log.info("[DATASOURCE-CONFIG] WRITER datasource configured | User: {} | URL: {}",
                 properties.getUsername(), properties.getUrl());
-        if ("changeme_writer".equals(properties.getPassword())) {
-            log.warn("[DATASOURCE-CONFIG] WRITER datasource is using the default password. " +
-                    "DB_WRITER_PASSWORD env var is not set — did you run: source ./set-env.sh ?");
-        }
 
-        return dataSource;
+        return properties.initializeDataSourceBuilder()
+                .type(HikariDataSource.class)
+                .build();
     }
     
     // Deleter DataSource Configuration (app_cleaner user)
@@ -100,19 +80,12 @@ public class DataSourceConfig {
     public DataSource deleterDataSource() {
         DataSourceProperties properties = deleterDataSourceProperties();
 
-        HikariDataSource dataSource = properties.initializeDataSourceBuilder()
-                .type(HikariDataSource.class)
-                .password(System.getenv("DB_DELETER_PASSWORD"))
-                .build();
-
         log.info("[DATASOURCE-CONFIG] DELETER datasource configured | User: {} | URL: {}",
                 properties.getUsername(), properties.getUrl());
-        if ("changeme_deleter".equals(properties.getPassword())) {
-            log.warn("[DATASOURCE-CONFIG] DELETER datasource is using the default password. " +
-                    "DB_DELETER_PASSWORD env var is not set — did you run: source ./set-env.sh ?");
-        }
 
-        return dataSource;
+        return properties.initializeDataSourceBuilder()
+                .type(HikariDataSource.class)
+                .build();
     }
     
     // Routing DataSource Configuration
@@ -131,7 +104,6 @@ public class DataSourceConfig {
         dataSourceMap.put(OperationType.READ, readerDataSource);
         dataSourceMap.put(OperationType.WRITE, writerDataSource);
         dataSourceMap.put(OperationType.DELETE, deleterDataSource);
-        
         routingDataSource.setTargetDataSources(dataSourceMap);
         routingDataSource.setDefaultTargetDataSource(readerDataSource); // Default to read-only for safety
         

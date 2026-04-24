@@ -1,14 +1,17 @@
 spring:
   application:
     name: sky-subscription-api
-  
+
+  config:
+    import: optional:file:.env[.properties]
+
   # Multiple datasources for GDPR compliance and role-based access control
   datasource:
     # Reader datasource - app_reader user (readonly + readonly_history roles)
     reader:
       url: ${DB_URL:jdbc:postgresql://pg-mv-4e0fdcb-mv-db-subscriptions.j.aivencloud.com:13001/defaultdb?sslmode=require}
-      username: ${DB_READER_USERNAME:app_reader}
-      password: ${DB_READER_PASSWORD:changeme_reader}
+      username: ${DB_READER_USERNAME}
+      password: ${DB_READER_PASSWORD}
       driver-class-name: org.postgresql.Driver
       hikari:
         pool-name: ReaderPool
@@ -18,8 +21,8 @@ spring:
     # Writer datasource - app user (main + history_manager roles)
     writer:
       url: ${DB_URL:jdbc:postgresql://pg-mv-4e0fdcb-mv-db-subscriptions.j.aivencloud.com:13001/defaultdb?sslmode=require}
-      username: ${DB_WRITER_USERNAME:app}
-      password: ${DB_WRITER_PASSWORD:changeme_writer}
+      username: ${DB_WRITER_USERNAME}
+      password: ${DB_WRITER_PASSWORD}
       driver-class-name: org.postgresql.Driver
       hikari:
         pool-name: WriterPool
@@ -29,8 +32,8 @@ spring:
     # Deleter datasource - app_cleaner user (deleteonly_admin role)
     deleter:
       url: ${DB_URL:jdbc:postgresql://pg-mv-4e0fdcb-mv-db-subscriptions.j.aivencloud.com:13001/defaultdb?sslmode=require}
-      username: ${DB_DELETER_USERNAME:app_cleaner}
-      password: ${DB_DELETER_PASSWORD:changeme_deleter}
+      username: ${DB_DELETER_USERNAME}
+      password: ${DB_DELETER_PASSWORD}
       driver-class-name: org.postgresql.Driver
       hikari:
         pool-name: DeleterPool
